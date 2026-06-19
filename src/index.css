@@ -1,0 +1,426 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Orbitron:wght@400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 220 30% 3%;
+    --foreground: 220 20% 97%;
+    --card: 220 20% 7%;
+    --card-foreground: 220 20% 97%;
+    --popover: 220 20% 7%;
+    --popover-foreground: 220 20% 97%;
+    --primary: 25 100% 55%;
+    --primary-foreground: 220 30% 3%;
+    --secondary: 220 15% 11%;
+    --secondary-foreground: 220 20% 97%;
+    --muted: 220 15% 11%;
+    --muted-foreground: 220 10% 60%;
+    --accent: 168 80% 52%;
+    --accent-foreground: 220 30% 3%;
+    --destructive: 352 78% 56%;
+    --destructive-foreground: 220 20% 97%;
+    --border: 220 15% 18%;
+    --input: 220 15% 18%;
+    --ring: 168 80% 52%;
+    --radius: 0.5rem;
+    --sidebar-background: 220 20% 7%;
+    --sidebar-foreground: 220 20% 97%;
+    --sidebar-primary: 25 100% 55%;
+    --sidebar-primary-foreground: 220 30% 3%;
+    --sidebar-accent: 220 15% 11%;
+    --sidebar-accent-foreground: 220 20% 97%;
+    --sidebar-border: 220 15% 18%;
+    --sidebar-ring: 168 80% 52%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border-subtle;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  body {
+    @apply bg-void text-text-primary font-geist;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    overflow-x: hidden;
+  }
+  
+  h1, h2, h3 {
+    @apply font-orbitron font-bold tracking-tight;
+  }
+  
+  h4, h5, h6 {
+    @apply font-geist font-semibold;
+  }
+  
+  /* Tabular nums for stats, currency, timers */
+  .tabular-nums {
+    font-variant-numeric: tabular-nums;
+  }
+  
+  /* Scrollbar styling */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: #0D1117;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: #262C38;
+    border-radius: 3px;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: #3A4150;
+  }
+  
+  /* Selection color */
+  ::selection {
+    background: rgba(255, 122, 26, 0.3);
+    color: #F4F6FA;
+  }
+}
+
+@layer components {
+  /* Glass Panel - base container */
+  .glass-panel {
+    @apply bg-elevated/70 backdrop-blur-md border border-border-subtle/30 rounded-md;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  }
+  
+  .glass-panel-hover {
+    @apply glass-panel transition-all duration-220;
+  }
+  
+  .glass-panel-hover:hover {
+    @apply bg-elevated-2/80 border-accent-amber/30;
+    box-shadow: 0 0 24px rgba(255, 122, 26, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  }
+  
+  /* Glass panel teal variant */
+  .glass-panel-teal {
+    @apply glass-panel transition-all duration-220;
+  }
+  
+  .glass-panel-teal:hover {
+    @apply bg-elevated-2/80 border-accent-teal/30;
+    box-shadow: 0 0 24px rgba(45, 226, 197, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  }
+  
+  /* Button variants */
+  .btn-primary {
+    @apply bg-accent-amber text-void font-bold uppercase tracking-wider px-6 py-3 rounded-md transition-all duration-120;
+  }
+  
+  .btn-primary:hover {
+    box-shadow: 0 0 24px rgba(255, 122, 26, 0.4);
+    transform: scale(1.02);
+  }
+  
+  .btn-secondary {
+    @apply bg-elevated/60 backdrop-blur border border-border-subtle/50 text-text-primary px-6 py-3 rounded-md transition-all duration-120;
+  }
+  
+  .btn-secondary:hover {
+    @apply border-accent-amber/40 bg-elevated-2/80;
+  }
+  
+  .btn-teal {
+    @apply bg-accent-teal text-void font-bold uppercase tracking-wider px-6 py-3 rounded-md transition-all duration-120;
+  }
+  
+  .btn-teal:hover {
+    box-shadow: 0 0 24px rgba(45, 226, 197, 0.4);
+    transform: scale(1.02);
+  }
+  
+  .btn-danger {
+    @apply bg-accent-crimson text-white font-bold uppercase tracking-wider px-6 py-3 rounded-md transition-all duration-120;
+  }
+  
+  .btn-danger:hover {
+    box-shadow: 0 0 24px rgba(230, 57, 80, 0.4);
+    transform: scale(1.02);
+  }
+  
+  .btn-ghost {
+    @apply bg-transparent text-text-secondary px-4 py-2 rounded-md transition-all duration-120;
+  }
+  
+  .btn-ghost:hover {
+    @apply text-text-primary bg-elevated/50;
+  }
+  
+  /* Input styling */
+  .input-glass {
+    @apply bg-elevated border border-border-subtle rounded-md px-4 py-3 text-text-primary placeholder:text-muted transition-all duration-120;
+  }
+  
+  .input-glass:focus {
+    @apply border-accent-teal ring-1 ring-accent-teal/30 outline-none;
+  }
+  
+  .input-error {
+    @apply border-accent-crimson ring-1 ring-accent-crimson/30;
+  }
+  
+  /* Label styling */
+  .label-uppercase {
+    @apply text-xs font-medium uppercase tracking-[0.04em] text-muted;
+  }
+  
+  /* HUD Grid Overlay */
+  .hud-grid {
+    position: absolute;
+    inset: 0;
+    background-image: 
+      linear-gradient(to right, rgba(38, 44, 56, 0.05) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(38, 44, 56, 0.05) 1px, transparent 1px);
+    background-size: 64px 64px;
+    pointer-events: none;
+    animation: gridPulse 4s ease-in-out infinite;
+  }
+  
+  /* Scanlines */
+  .scanlines {
+    position: fixed;
+    inset: 0;
+    background: repeating-linear-gradient(
+      to bottom,
+      transparent,
+      transparent 1px,
+      rgba(0, 0, 0, 0.03) 1px,
+      rgba(0, 0, 0, 0.03) 2px
+    );
+    pointer-events: none;
+    z-index: 9999;
+  }
+  
+  /* Ambient glow orbs */
+  .glow-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    pointer-events: none;
+    animation: orbDrift 25s ease-in-out infinite, orbBreathe 8s ease-in-out infinite;
+  }
+  
+  .glow-orb-amber {
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(255, 122, 26, 0.08), transparent 70%);
+  }
+  
+  .glow-orb-teal {
+    width: 350px;
+    height: 350px;
+    background: radial-gradient(circle, rgba(45, 226, 197, 0.06), transparent 70%);
+  }
+  
+  /* Live pulse indicator */
+  .live-pulse {
+    position: relative;
+    width: 8px;
+    height: 8px;
+    background: #E63950;
+    border-radius: 50%;
+  }
+  
+  .live-pulse::before,
+  .live-pulse::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: #E63950;
+    animation: pulseRing 1.5s ease-out infinite;
+  }
+  
+  .live-pulse::after {
+    animation-delay: 0.6s;
+  }
+  
+  /* Corner brackets for tactical feel */
+  .corner-brackets {
+    position: relative;
+  }
+  
+  .corner-brackets::before,
+  .corner-brackets::after {
+    content: '';
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    border-color: rgba(255, 122, 26, 0.4);
+    border-style: solid;
+    pointer-events: none;
+    transition: all 220ms;
+  }
+  
+  .corner-brackets::before {
+    top: 2px;
+    left: 2px;
+    border-width: 2px 0 0 2px;
+  }
+  
+  .corner-brackets::after {
+    bottom: 2px;
+    right: 2px;
+    border-width: 0 2px 2px 0;
+  }
+  
+  .corner-brackets:hover::before,
+  .corner-brackets:hover::after {
+    border-color: rgba(255, 122, 26, 0.8);
+  }
+  
+  /* Skeleton loading */
+  .skeleton {
+    background: linear-gradient(
+      90deg,
+      #161B22 25%,
+      #1E2530 50%,
+      #161B22 75%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+  }
+  
+  /* Ticker animation */
+  .ticker-wrap {
+    overflow: hidden;
+    white-space: nowrap;
+  }
+  
+  .ticker-content {
+    display: inline-block;
+    animation: ticker 30s linear infinite;
+  }
+  
+  /* Progress bar glow */
+  .progress-glow {
+    box-shadow: 0 0 8px rgba(255, 122, 26, 0.5);
+  }
+  
+  /* Card hover glow variants */
+  .card-glow-amber:hover {
+    box-shadow: 0 0 24px rgba(255, 122, 26, 0.2);
+  }
+  
+  .card-glow-teal:hover {
+    box-shadow: 0 0 24px rgba(45, 226, 197, 0.2);
+  }
+  
+  .card-glow-crimson:hover {
+    box-shadow: 0 0 24px rgba(230, 57, 80, 0.2);
+  }
+  
+  .card-glow-violet:hover {
+    box-shadow: 0 0 24px rgba(139, 92, 246, 0.2);
+  }
+  
+  /* Rarity border colors */
+  .rarity-common { @apply border-border-subtle; }
+  .rarity-rare { @apply border-accent-teal/50; }
+  .rarity-epic { @apply border-accent-violet/50; }
+  .rarity-legendary { @apply border-accent-gold/50; }
+  
+  /* Status badges */
+  .status-online { @apply bg-accent-teal; }
+  .status-in-game { @apply bg-accent-amber; }
+  .status-away { @apply bg-text-muted; }
+  .status-live { @apply bg-accent-crimson; }
+}
+
+@layer utilities {
+  .duration-120 {
+    transition-duration: 120ms;
+  }
+  
+  .duration-220 {
+    transition-duration: 220ms;
+  }
+  
+  .duration-400 {
+    transition-duration: 400ms;
+  }
+  
+  .ease-cinematic {
+    transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  
+  .text-glow-amber {
+    text-shadow: 0 0 20px rgba(255, 122, 26, 0.5);
+  }
+  
+  .text-glow-teal {
+    text-shadow: 0 0 20px rgba(45, 226, 197, 0.5);
+  }
+  
+  /* Line clamp utilities */
+  .line-clamp-1 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+  }
+  
+  .line-clamp-2 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+  }
+  
+  .line-clamp-3 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+  }
+}
+
+/* Keyframes that reference Tailwind config */
+@keyframes gridPulse {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 1; }
+}
+
+@keyframes pulseRing {
+  0% { transform: scale(1); opacity: 0.6; }
+  100% { transform: scale(3); opacity: 0; }
+}
+
+@keyframes orbDrift {
+  0%, 100% { transform: translate(0, 0); }
+  33% { transform: translate(30px, -20px); }
+  66% { transform: translate(-20px, 15px); }
+}
+
+@keyframes orbBreathe {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes ticker {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
