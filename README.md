@@ -1,5 +1,3 @@
-# Aetheron - Competitive Gaming Platform
-
 A comprehensive competitive gaming platform built with modern web technologies, featuring player profiles, tournaments, battle passes, marketplace integration, and blockchain wallet support.
 
 ## 🎮 Project Overview
