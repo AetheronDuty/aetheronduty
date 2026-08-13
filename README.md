@@ -189,8 +189,8 @@ Modern browsers with ES6+ support:
 
 ## 📝 License
 
-Private project - All rights reserved
+This project is licensed under the MIT License — see the [LICENSE](./LICENSE) file for details.
 
 ## 🤝 Contributing
 
-This is a private project. For questions or support, please contact the development team.
+Contributions are welcome. For questions or support, please contact the development team.
